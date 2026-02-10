@@ -1,13 +1,14 @@
-# Maven / Java
+# Maven
 target/
-*.class
 
-# VS Code
+# IDEs
 .vscode/
+.idea/
+*.iml
 
 # Logs
 *.log
 
-# Sistema
+# OS
 .DS_Store
 Thumbs.db

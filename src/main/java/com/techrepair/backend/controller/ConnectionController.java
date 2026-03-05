@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Objects;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,9 @@ public class ConnectionController {
 
     @PostMapping
     public ResponseEntity<Connection> start(@Valid @RequestBody ConnectionRequest req, @RequestParam Long technicianId) {
-        return ResponseEntity.ok(connectionService.startConnection(req, technicianId));
+        ConnectionRequest safeReq = Objects.requireNonNull(req, "Connection request is required");
+        Long safeTechnicianId = Objects.requireNonNull(technicianId, "Technician id is required");
+        return ResponseEntity.ok(connectionService.startConnection(safeReq, safeTechnicianId));
     }
 
     @GetMapping("/active")

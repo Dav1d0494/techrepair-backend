@@ -8,9 +8,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
+import java.util.Optional;
+
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
     Page<Ticket> findByStatus(TicketStatus status, Pageable pageable);
     long countByPriority(TicketPriority priority);
     Page<Ticket> findByClientId(Long clientId, Pageable pageable);
+    Page<Ticket> findByUpdatedAtAfterOrderByUpdatedAtAsc(Instant updatedAt, Pageable pageable);
+    Page<Ticket> findAllByOrderByUpdatedAtAsc(Pageable pageable);
+    Optional<Ticket> findTopByOrderByUpdatedAtDesc();
 }

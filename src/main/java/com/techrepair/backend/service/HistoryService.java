@@ -5,6 +5,8 @@ import com.techrepair.backend.repository.HistoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 public class HistoryService {
 
@@ -12,6 +14,6 @@ public class HistoryService {
     private HistoryRepository historyRepository;
 
     public History record(History h) {
-        return historyRepository.save(h);
+        return historyRepository.save(Objects.requireNonNull(h, "History is required"));
     }
 }

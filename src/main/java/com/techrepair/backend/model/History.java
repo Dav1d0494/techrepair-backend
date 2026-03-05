@@ -28,6 +28,13 @@ public class History {
     private String entityRef;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private Instant timestamp;
+
+    @PrePersist
+    void prePersist() {
+        if (timestamp == null) {
+            timestamp = Instant.now();
+        }
+    }
 }

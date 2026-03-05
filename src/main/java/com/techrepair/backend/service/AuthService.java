@@ -1,6 +1,5 @@
 package com.techrepair.backend.service;
 
-import com.techrepair.backend.config.JwtConfig;
 import com.techrepair.backend.dto.request.LoginRequest;
 import com.techrepair.backend.dto.request.RegisterRequest;
 import com.techrepair.backend.dto.response.ApiResponse;

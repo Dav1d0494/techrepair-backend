@@ -19,9 +19,10 @@ public class ReportController {
     @GetMapping(produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> pdf() {
         byte[] pdf = reportService.generatePdfReport();
+        MediaType pdfMediaType = MediaType.parseMediaType(MediaType.APPLICATION_PDF_VALUE);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=report.pdf")
-                .contentType(MediaType.APPLICATION_PDF)
+                .contentType(pdfMediaType)
                 .body(pdf);
     }
 }

@@ -1,5 +1,6 @@
 package com.techrepair.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.techrepair.backend.enums.TicketPriority;
 import com.techrepair.backend.enums.TicketStatus;
 import lombok.AllArgsConstructor;
@@ -34,12 +35,14 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private TicketPriority priority = TicketPriority.MEDIUM;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
+    @JsonIgnoreProperties({"password", "hibernateLazyInitializer", "handler"})
     private User client;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "technician_id")
+    @JsonIgnoreProperties({"password", "hibernateLazyInitializer", "handler"})
     private User technician;
 
     @CreatedDate

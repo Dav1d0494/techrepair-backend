@@ -1,5 +1,6 @@
 package com.techrepair.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.techrepair.backend.enums.ConnectionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,12 +22,14 @@ public class Connection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "technician_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "password"})
     private User technician;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "password"})
     private User client;
 
     @Enumerated(EnumType.STRING)

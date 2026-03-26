@@ -1,6 +1,5 @@
 package com.techrepair.backend.dto.response;
 
-import com.techrepair.backend.dto.response.UserResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

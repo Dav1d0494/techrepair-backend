@@ -1,6 +1,5 @@
 package com.techrepair.backend.repository;
 
-import com.techrepair.backend.enums.ConnectionStatus;
 import com.techrepair.backend.model.Connection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

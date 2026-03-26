@@ -1,8 +1,6 @@
 package com.techrepair.backend.controller;
 
 import com.techrepair.backend.dto.request.TicketRequest;
-import com.techrepair.backend.dto.response.ApiResponse;
-import com.techrepair.backend.dto.response.TicketResponse;
 import com.techrepair.backend.model.Ticket;
 import com.techrepair.backend.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;

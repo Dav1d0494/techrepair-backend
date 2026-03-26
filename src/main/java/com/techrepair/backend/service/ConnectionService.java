@@ -2,7 +2,6 @@ package com.techrepair.backend.service;
 
 import com.techrepair.backend.dto.request.ConnectionRequest;
 import com.techrepair.backend.model.Connection;
-import com.techrepair.backend.model.User;
 import com.techrepair.backend.repository.ConnectionRepository;
 import com.techrepair.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

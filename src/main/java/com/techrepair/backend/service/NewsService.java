@@ -1,7 +1,7 @@
 package com.techrepair.backend.service;
 
 import com.techrepair.backend.dto.NewsDTO;
-import com.techrepair.backend.entity.News;
+import com.techrepair.backend.model.News;
 import com.techrepair.backend.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class NewsService {
     private NewsRepository newsRepository;
 
     public List<NewsDTO> getAllNews() {
-        return newsRepository.findAllByOrderByCreatedAtDesc()
+        return newsRepository.findAll()
                 .stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());

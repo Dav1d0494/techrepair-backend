@@ -2,6 +2,8 @@ package com.techrepair.backend.controller;
 
 import com.techrepair.backend.dto.NewsDTO;
 import com.techrepair.backend.service.NewsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,21 +13,28 @@ import java.util.*;
 @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "http://localhost:8088"})
 public class NewsController {
 
+    private static final Logger logger = LoggerFactory.getLogger(NewsController.class);
+
     @Autowired
     private NewsService newsService;
 
     @GetMapping("/evidencia-noticias")
     public ResponseEntity<Map<String, Object>> getEvidenciaNoticias() {
-        List<NewsDTO> list = newsService.getAllNews();
         List<Map<String, Object>> noticias = new ArrayList<>();
-        for (NewsDTO n : list) {
-            Map<String, Object> item = new HashMap<>();
-            item.put("id", n.getId());
-            item.put("titulo", n.getTitle());
-            item.put("contenido", n.getContent());
-            item.put("fecha", n.getCreatedAt() != null ? n.getCreatedAt().toString() : null);
-            noticias.add(item);
+        try {
+            List<NewsDTO> list = newsService.getAllNews();
+            for (NewsDTO n : list) {
+                Map<String, Object> item = new HashMap<>();
+                item.put("id", n.getId());
+                item.put("titulo", n.getTitle());
+                item.put("contenido", n.getContent());
+                item.put("fecha", n.getCreatedAt() != null ? n.getCreatedAt().toString() : null);
+                noticias.add(item);
+            }
+        } catch (Exception exception) {
+            logger.error("Error loading technical news from database.", exception);
         }
+
         Map<String, Object> response = new HashMap<>();
         response.put("noticias", noticias);
         response.put("total", noticias.size());
